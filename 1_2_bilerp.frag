@@ -2,7 +2,9 @@
 precision mediump float;
 out vec4 fragColor;
 uniform vec2 u_resolution;
-
+/**
+* 双線形補間
+*/ 
 void main() {
   vec2 pos = gl_FragCoord.xy / u_resolution.xy;
   vec3[4] col4 = vec3[](
@@ -13,7 +15,7 @@ void main() {
   );
   vec3 col = mix(
     mix(col4[0], col4[1], pos.x), 
-    mix(col4[2], col4[3]. pos.x), 
+    mix(col4[2], col4[3], pos.x), 
     pos.y
   );
   fragColor = vec4(col, 1.0);
